@@ -161,7 +161,9 @@ module.exports = generators.Base.extend({
           type: "confirm",
           name: "pwa",
           message: "Would you like to make a Progressive Web App?",
-          when: !this.props.pwa,
+          when: !this.props.pwa && function(answers) {
+            return answers.serverType !== 'expressjs';
+          },
           default: true
         },
         {
